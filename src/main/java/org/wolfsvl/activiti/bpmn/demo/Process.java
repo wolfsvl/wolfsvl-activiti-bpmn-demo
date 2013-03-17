@@ -46,7 +46,7 @@ public class Process {
 		this.currentContainer = process;
 	}
 
-	public Process appendStartEvent(String id) {
+	public Process insertStartEvent(String id) {
 		StartEvent startEvent = new StartEvent();
 		startEvent.setId(id);
 		startEvent.setName(id);
@@ -171,8 +171,12 @@ public class Process {
 		loopCharacteristics.setSequential(sequential);
 		subProcess.setLoopCharacteristics(loopCharacteristics);
 		addActivity(id, subProcess);
+		if (this.currentContainer instanceof SubProcess) {
+			processStack.push((SubProcess) this.currentContainer);
+		}
 		this.currentContainer = subProcess;
-		appendStartEvent("__start" + id);
+		this.lastId = null;
+		insertStartEvent("__start" + id);
 		return this;
 	}
 
