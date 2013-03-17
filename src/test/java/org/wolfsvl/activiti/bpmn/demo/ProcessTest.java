@@ -15,8 +15,8 @@ public class ProcessTest {
 	@Test
 	public void testProcess() throws Exception {
 		String processId = "wolfsvlProcess";
-		PNGCreator pngCreator = new PNGCreator();
-		pngCreator.createPNG(createBPMNProcess(processId),processId,"target",activitiRule);
+		FileCreator pngCreator = new FileCreator();
+		pngCreator.createFiles(createBPMNProcess(processId),processId,"target",activitiRule);
 	
 	}
 
